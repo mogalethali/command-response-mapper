@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SqlStatementHash>
+	<SqlStatements>
+	
+		<SqlStatement>
+			<SqlName>GetAllEvents</SqlName>
+			<SqlText>
+				<![CDATA[
+					SELECT * FROM [SedaEvents] WITH (nolock) 
+					       WHERE ([Environment] = ?) AND ([ApplicationName] = ?)
+					       ORDER BY [FlowName], [Event], [Folder] ASC
+                ]]>
+			</SqlText>
+		</SqlStatement>
+		
+		<SqlStatement>
+			<SqlName>InsertErrorEvent</SqlName>
+			<SqlText>
+				<![CDATA[
+				    INSERT INTO [SedaEvents] ([Environment], [ApplicationName], [FlowName], [Event], [Folder], [Enabled], [CorrectionEnabled]) 
+				                             VALUES(?, ?, ?, ?, 'none', ?, ?)
+                ]]>
+			</SqlText>
+		</SqlStatement>
+		
+		<SqlStatement>
+			<SqlName>UpdateErrorEvent</SqlName>
+			<SqlText>
+				<![CDATA[
+					UPDATE [SedaEvents] SET [Enabled] = ?, [CorrectionEnabled] = ? WHERE ([Environment] = ?) AND ([ApplicationName] = ?) AND ([FlowName] = ?) AND ([Event] = ?)
+                ]]>
+			</SqlText>
+		</SqlStatement>
+		
+		<SqlStatement>
+			<SqlName>InsertFileCountEvent</SqlName>
+			<SqlText>
+				<![CDATA[
+				    INSERT INTO [SedaEvents] ([Environment], [ApplicationName], [FlowName], [Event], [Folder], [Enabled], [CorrectionEnabled], [FileCountThreshold], 
+				                                             [HysteresisPercentage], [MedianCount], [Direction]) 
+				                             VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                ]]>
+			</SqlText>
+		</SqlStatement>
+		
+		<SqlStatement>
+			<SqlName>UpdateFileCountEvent</SqlName>
+			<SqlText>
+				<![CDATA[
+					UPDATE [SedaEvents] SET [Enabled] = ?, [CorrectionEnabled] = ?, [FileCountThreshold] = ?, [HysteresisPercentage] = ?, [MedianCount] = ?, [Direction] = ?
+					       WHERE ([Environment] = ?) AND ([ApplicationName] = ?) AND ([FlowName] = ?) AND ([Event] = ?) AND ([Folder] = ?)
+                ]]>
+			</SqlText>
+		</SqlStatement>
+		
+		<SqlStatement>
+			<SqlName>InsertMessageRateEvent</SqlName>
+			<SqlText>
+				<![CDATA[
+				    INSERT INTO [SedaEvents] ([Environment], [ApplicationName], [FlowName], [Event], [Folder], [Enabled], [CorrectionEnabled], [RateThresholdHz], 
+				                                             [HysteresisPercentage], [MedianCount], [Direction]) 
+                                             VALUES(?, ?, ?, ?, 'none', ?, ?, ?, ?, ?, ?)
+                ]]>
+			</SqlText>
+		</SqlStatement>
+		
+		<SqlStatement>
+			<SqlName>UpdateMessageRateEvent</SqlName>
+			<SqlText>
+				<![CDATA[
+					UPDATE [SedaEvents] SET [Enabled] = ?, [CorrectionEnabled] = ?, [RateThresholdHz] = ?, [HysteresisPercentage] = ?, [MedianCount] = ?, [Direction] = ?
+					       WHERE ([Environment] = ?) AND ([ApplicationName] = ?) AND ([FlowName] = ?) AND ([Event] = ?)
+                ]]>
+			</SqlText>
+		</SqlStatement>
+		
+		<SqlStatement>
+			<SqlName>DeleteEvent</SqlName>
+			<SqlText>
+				<![CDATA[
+					DELETE FROM [SedaEvents] 
+					       WHERE ([Environment] = ?) AND ([ApplicationName] = ?) AND ([FlowName] = ?) AND ([Event] = ?) AND ([Folder] = ?)
+                ]]>
+			</SqlText>
+		</SqlStatement>
+
+		<SqlStatement>
+			<SqlName>DeleteAllEvents</SqlName>
+			<SqlText>
+				<![CDATA[
+					DELETE FROM [SedaEvents] WHERE ([Environment] = ?) AND ([ApplicationName] = ?)
+                ]]>
+			</SqlText>
+		</SqlStatement>
+		
+	</SqlStatements>
+</SqlStatementHash>		
